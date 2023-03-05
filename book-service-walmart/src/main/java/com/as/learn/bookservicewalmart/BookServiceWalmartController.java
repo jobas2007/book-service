@@ -12,8 +12,14 @@ import java.util.List;
 public class BookServiceWalmartController {
 
     @PostMapping
-    public Book addNewBook(@RequestBody Book inBook) {
+    public Book addNewBook(@RequestHeader("walmart-request") String header,
+                           @RequestHeader("Authorization") String auth,
+                           @RequestBody Book inBook) {
         log.info("Incoming - Walmart Book:{}", inBook);
+        log.info("Incoming - Walmart Book-header:{}", header);
+        log.info("Incoming - Walmart Book-auth:{}", auth);
+        //log.info("Incoming - Walmart Book-dummy-header:{}", dummy);
+
         Book book = new Book();
         book.setTitle(inBook.getTitle());
         book.setAuthor(inBook.getAuthor());

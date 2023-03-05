@@ -12,8 +12,10 @@ import java.util.List;
 public class BookServiceTargetController {
 
     @PostMapping
-    public Book addNewBook(@RequestBody Book inBook){
+    public Book addNewBook(@RequestHeader("target-request") String header,
+                           @RequestBody Book inBook){
         log.info("Incoming - Target Book:{}", inBook);
+        log.info("Incoming - Target Book- header:{}", header);
         Book book = new Book();
         book.setTitle(inBook.getTitle());
         book.setAuthor(inBook.getAuthor());
